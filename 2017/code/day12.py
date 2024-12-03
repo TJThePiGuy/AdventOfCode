@@ -45,37 +45,24 @@ def part_b():
         targets = set(int(_) for _ in line[1].split(', '))
         connect_dict[source] = targets
 
-    groups:list[set[int]] = []
-
+    checked:set[int] = set()
+    count = 0
     for i in range(len(lines)):
-        found = False
-        for S in groups:
-            if i in S:
-                found = True
-                break
-        if found:
+        if i in checked:
             continue
-        
+        count += 1
         to_check:set[int] = set()
         to_check.add(i)
-        checked:set[int] = set()
-
-        connected:set[int] = set()
-
-
         while(len(to_check) != 0):
             val = to_check.pop()
             if(val in checked):
                 continue
-            connected.add(val)
             checked.add(val)
             for new_val in connect_dict[val]:
                 if (new_val in checked):
                     continue
                 to_check.add(new_val)
-        
-        groups.append(connected)
-    ans = len(groups)
+    ans = count
     puzzle.answer_b = ans
     print(ans)
     
