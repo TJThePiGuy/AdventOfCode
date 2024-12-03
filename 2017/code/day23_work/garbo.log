@@ -1,0 +1,18 @@
+    NUM = 108_400
+    MAX = 125_400
+C: 
+    f = 1
+    d = 2
+B: 
+    e = 2   
+A:
+    if d*e == NUM, f = 0
+    e += 1
+    
+    if e != NUM,  jump to A
+    d += 1
+    
+    if d != NUM, jump to B
+    
+    if f == 0, h += 1
+    if NUM != MAX, NUM += 17, jump to C
