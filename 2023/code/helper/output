@@ -1,0 +1,6 @@
+[('broadcaster', False)]
+[('a', False)]
+[('inv', True), ('con', True)]
+[('b', False), ('output', False)]
+[('con', True)]
+[('output', False)]
