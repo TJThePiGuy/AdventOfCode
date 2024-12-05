@@ -13,4 +13,4 @@ This are my (TJ O) solutions to Advent of Code! I have been completing them sinc
 | 2021 | 0/50 |
 | 2022 | 0/50 |
 | [2023](2023/2023.md) | 39/50 |
-| [2024](2024/2024.md) | 6/50 |
+| [2024](2024/2024.md) | 10/50 |
