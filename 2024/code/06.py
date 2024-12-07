@@ -20,7 +20,7 @@ def part_a():
     locs = set()
     dir = 3
     while((X > -1) and (X < W) and (Y > -1) and (Y < H)):
-        print(X,Y)
+        # print(X,Y)
         locs.add((X,Y))
         d = dir_dict[dir]
         dx,dy = d
@@ -37,12 +37,13 @@ def part_a():
         Y = next_Y
     
     puzzle.answer_a = (len(locs))
+    print(len(locs))
+    return(locs)
 
         
-def part_b():
+def part_b(open:set):
     data = puzzle.input_data
     hashes = set()
-    open = set()
     lines = data.split('\n')
     H = len(lines)
     START_X = START_Y = -1
@@ -55,10 +56,9 @@ def part_b():
                 START_Y = y
             elif char == '#':
                 hashes.add((x,y))
-            else:
-                open.add((x,y))
     loops  = 0
-    for I, NEW_POINT in enumerate(open):
+    open.remove((START_X, START_Y))
+    for NEW_POINT in open:
         hashes.add(NEW_POINT)
         X = START_X
         Y = START_Y
@@ -86,12 +86,12 @@ def part_b():
         if(loop):
             loops += 1
         hashes.remove(NEW_POINT)
-        print(f'{I} of {len(open)}')
+        # print(f'{I} of {len(open)}')
     print(loops)
     puzzle.answer_b = (loops)
 
         
 
-part_a()
+L = part_a()
 
-part_b()
+part_b(L)

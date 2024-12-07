@@ -28,8 +28,6 @@ def part_a():
                  val_map[val] = 0
             val_map[val] |= ind_to_bin(idx)
     start_inds = [i for i in range(len(ports)) if 0 in ports[i]]
-    largest_length = 0
-    bridges_to_check:set[tuple[int, int, int]] = set()
 
     largest_left:dict[tuple[int,int,int],int] = dict()
 
@@ -63,7 +61,6 @@ def part_a():
 
 def part_b():
     data = puzzle.input_data
-    # data = '0/2\n2/2\n2/3\n3/4\n3/5\n0/1\n10/1\n9/10'
 
     val_map:dict[int,int] = dict()
     ports = list(list(int(i) for i in _.split('/')) for _ in data.split('\n'))
@@ -73,8 +70,6 @@ def part_b():
                  val_map[val] = 0
             val_map[val] |= ind_to_bin(idx)
     start_inds = [i for i in range(len(ports)) if 0 in ports[i]]
-    largest_length = 0
-    bridges_to_check:set[tuple[int, int, int]] = set()
 
     largest_left:dict[tuple[int,int,int],tuple[int,int]] = dict()
 
