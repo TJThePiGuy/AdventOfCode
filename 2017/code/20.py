@@ -75,7 +75,6 @@ def get_int(p_diff, v_diff, a_diff):
 
 def part_b():
     data = puzzle.input_data
-    # data = 'p=<-6,0,0>, v=< 3,0,0>, a=< 0,0,0>\np=<-4,0,0>, v=< 2,0,0>, a=< 0,0,0>\np=<-2,0,0>, v=< 1,0,0>, a=< 0,0,0>\np=< 3,0,0>, v=<-1,0,0>, a=< 0,0,0>'
     points = [_.split(', ') for _ in data.split('\n')]
     pos = []
     vel = []
@@ -85,7 +84,8 @@ def part_b():
         vel.append(np.array([int(i) for i in point[1][3:-1].split(',')], dtype=int))
         acc.append(np.array([int(i) for i in point[2][3:-1].split(',')], dtype=int))
 
-    collisions:list[tuple[int,int,int] ]= list()
+
+    collision_dict:dict[int,set[tuple[int,int]]] = dict()
 
     for idx in range(len(points)):
         p1 = pos[idx]
@@ -97,24 +97,22 @@ def part_b():
             a2 = acc[jdx]
             intersect = get_int(p1-p2, v1-v2, a1-a2)
             # print(idx, jdx, len(intersect))
-            if(len(intersect)!= 0):
-                for time in intersect:
-                    collisions.append((time, idx, jdx))
+            for time in intersect:
+                if time not in collision_dict:
+                    collision_dict[time] = set()
+                collision_dict[time].add((idx, jdx))
 
-    collisions.sort(key = lambda item: item[0])
-    collision_times = sorted(list(set(item[0] for item in collisions)))
-    still_alive:set[int] = set(range(len(points)))
-    for time in collision_times:
+    sorted_times = sorted(collision_dict)
+    still_alive = set(range(len(points)))
+    for time in sorted_times:
         to_remove = set()
-        for collision in collisions:
-            if collision[0] != time:
+        for collision in collision_dict[time]:
+            if not(collision[0] in still_alive) or not(collision[1] in still_alive):
                 continue
-            if not(collision[1] in still_alive) or not(collision[2] in still_alive):
-                continue
+            to_remove.add(collision[0])
             to_remove.add(collision[1])
-            to_remove.add(collision[2])
         still_alive.difference_update(to_remove)
-        # print(time)
+        print(time)
     puzzle.answer_b = len(still_alive)
     print(len(still_alive))
 

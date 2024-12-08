@@ -124,7 +124,6 @@ def part_b():
     puzzle.answer_b = sends[1]
     
     print(sends[1])
-part_a()
 
+part_a()
 part_b()
-print(puzzle.input_data)
