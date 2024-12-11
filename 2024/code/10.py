@@ -64,7 +64,7 @@ def part_b():
                             next_check[(next_x, next_y)] = 0
                         next_check[(next_x, next_y)] += ct
             to_check = next_check
-        total += sum(v for k,v in to_check.items())
+        total += sum(to_check.values())
     print(total)
     puzzle.answer_b = total
 part_a()
