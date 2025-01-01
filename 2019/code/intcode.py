@@ -72,7 +72,6 @@ class IntCodeComputer:
                 if self.print_out:
                     print(self.get_val(params % 10, self.idx + 1))
                 self.output_arr.append(self.get_val(params % 10, self.idx + 1))
-                # print(len(self.output_arr))
                 self.idx += 2
 
             if op == 5:
